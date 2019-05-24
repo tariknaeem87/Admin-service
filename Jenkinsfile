@@ -15,11 +15,11 @@ node {
         stage('Build & Test') {
             sh "${mvnHome}/bin/mvn clean verify -DBUILD_NUMBER=$build_version"
             
-            junit(testResults: "AdminService/admin-service/target/surefire-reports/*.xml")
+            junit(testResults: "admin-service/target/surefire-reports/*.xml")
             
-            publishHTML([allowMissing: false, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'AdminService/admin-service-it/target/jacoco-report', reportFiles: 'index.html', reportName: 'Jacoco Report'])
-            publishHTML([allowMissing: false, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'AdminService/admin-service-it/target/cucumber-html-report', reportFiles: 'index.html', reportName: 'Cucumber Report'])
-            publishHTML([allowMissing: false, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'AdminService/admin-service-it/target/site/serenity/', reportFiles: 'index.html', reportName: 'Serenity Report'])
+            publishHTML([allowMissing: false, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'admin-service-it/target/jacoco-report', reportFiles: 'index.html', reportName: 'Jacoco Report'])
+            publishHTML([allowMissing: false, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'admin-service-it/target/cucumber-html-report', reportFiles: 'index.html', reportName: 'Cucumber Report'])
+            publishHTML([allowMissing: false, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'admin-service-it/target/site/serenity/', reportFiles: 'index.html', reportName: 'Serenity Report'])
         }
         
         
