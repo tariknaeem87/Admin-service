@@ -13,7 +13,7 @@ node {
         build_version = env.BUILD_NUMBER
       
         stage('Build & Test') {
-            sh "${mvnHome}/bin/mvn clean verify -DBUILD_NUMBER=$build_version"
+            bat "${mvnHome}/bin/mvn clean verify -DBUILD_NUMBER=$build_version"
             
             junit(testResults: "admin-service/target/surefire-reports/*.xml")
             
@@ -26,11 +26,11 @@ node {
         def sonarqubeScannerHome = tool name: 'sonarqubescanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
         stage('Code Analysis') {
             //sh "${sonarqubeScannerHome}/bin/sonar-scanner -e -Dsonar.host.url=http://sonar.ms-accelerator.com -Dsonar.projectName=admin-service -Dsonar.projectKey=com.dell.tsp.admin.tsp-admin-service:tsp-admin-service -Dsonar.sources=. -Dsonar.java.binaries=."
-            sh "${mvnHome}/bin/mvn sonar:sonar"
+            bat "${mvnHome}/bin/mvn sonar:sonar"
         }
 
         stage('Deploy to Nexus') {
-            sh "${mvnHome}/bin/mvn deploy -DBUILD_NUMBER=$build_version -Dmaven.test.skip=true"
+            bat "${mvnHome}/bin/mvn deploy -DBUILD_NUMBER=$build_version -Dmaven.test.skip=true"
          }
             
         stage('Deploy to Test') {
