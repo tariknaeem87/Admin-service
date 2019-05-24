@@ -1,0 +1,64 @@
+logging:
+    level:
+        request.trace: INFO
+    path: target/logs
+server:
+    servlet:
+        contextPath: /api
+    tomcat:
+        basedir: target/tomcat
+
+request:
+  logging:
+    secure:
+      enabled: false
+      
+swagger:
+  api:
+    title: admin-service
+    contact.info: Team
+    licence.url: #
+    description:
+    groupName: com.dell.tsp.admin
+    version: 1.0
+    path:
+      regex: /v.*/.*
+  terms.of.service.url: #
+  enabled: true
+  
+spring:
+    profiles:
+        active: local
+    main:
+        allow-bean-definition-overriding: true
+
+    datasource:
+      driverClassName: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/tsp_admin
+      username: root
+      password: admin
+    jpa:
+      hibernate.ddl-auto: update 
+      generate-ddl: true
+      show-sql: true
+    rabbitmq:
+      uri: amqp://guest:guest@10.118.169.49:5672
+      exchange: testExchange
+      routingkey: messages.key
+    
+useSSL: false
+security.enable-csrf: false
+
+
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://10.118.169.49:8761/eureka
+ 
+subscriberBaseUrl: https://tsp-subscriber-service.cfapps.io/api      
+crossOrigin: http://localhost:4200
+TSPMailAddress: tsp@notification.com
+notifiationBaseUrl: https://tsp-notification-service.cfapps.io/api/

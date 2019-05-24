@@ -1,0 +1,35 @@
+<configuration scan="true" scanPeriod="60">
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="ch.qos.logback.classic.PatternLayout">
+                <Pattern>%date  %replace([%-15.15thread]){'\s', ''} it %-5level %X{uniqueRequestId} %logger{36}%replace( %X{log-keyword} ){' ',' '}- %msg%nopex%n
+                </Pattern>
+            </layout>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+    <logger name="net.javacrumbs" level="OFF"/>
+    <logger name="com.token.replacement" level="OFF"/>
+    <logger name="org.lightadmin" level="ERROR"/>
+	<logger name="com.demo.tests" level="ERROR"/>
+    <logger name="com.mangofactory.swagger" level="ERROR"/>
+    <logger name="org.springframework.core.env" level="ERROR"/>
+    <logger name="org.springframework" level="ERROR"/>
+    <logger name="org.springframework.ejb.access" level="OFF"/>
+    <logger name="org.springframework.web.servlet.resource" level="ERROR"/>
+    <logger name="org.springframework.web.servlet.mvc.annotation" level="ERROR"/>
+    <logger name="org.springframework.web.client.HttpMessageConverterExtractor" level="ERROR"/>
+    <logger name="org.springframework.transaction.interceptor" level="OFF"/>
+    <logger name="org.springframework.web.client.RestTemplate" level="WARN"/>
+
+    <logger name="org.apache.http" level="ERROR"/>
+    <logger name="org.apache.http.headers" level="ERROR"/>
+    <logger name="httpclient.wire" level="DEBUG"/>
+    <logger name="org.apache.http.wire" level="DEBUG"/>
+
+</configuration>

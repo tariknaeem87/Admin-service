@@ -1,0 +1,28 @@
+logging:
+    level:
+        request.trace: INFO
+    path: logs
+server:
+    tomcat:
+        basedir: target/tomcat
+spring:
+    profiles:
+        active: local
+
+request:
+  logging:
+    secure:
+      enabled: false
+      
+swagger:
+  api:
+    title: sample-api
+    contact.info: Team
+    licence.url: #
+    description:
+    groupName: sample-api
+    version: 1.0
+    path:
+      regex: /v.*/.*
+  terms.of.service.url: #
+  enabled: true

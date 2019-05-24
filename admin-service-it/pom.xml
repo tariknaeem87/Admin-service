@@ -1,0 +1,598 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.dell.tsp.admin.tsp-admin-service</groupId>
+    <artifactId>admin-service-it</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <properties>
+        <api-name>api</api-name>
+        <spring-boot-maven-plugin.mainClass>com.dell.tsp.admin.Application</spring-boot-maven-plugin.mainClass>
+        <api.url>${domain.url}/${api-name}</api.url>
+		<domain.url>http://localhost:${tomcat.http.port}</domain.url>
+		<java.version>1.8</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<cucumber.tags>"@Completed","@Accepted","@Api","~@Ignored"</cucumber.tags>
+		<generated-resources>${project.build.directory}/generated-resources</generated-resources>
+		<serenity.test.root></serenity.test.root>
+		<aspectj-maven-plugin.version>1.11</aspectj-maven-plugin.version>
+		<build-helper-maven-plugin.version>3.0.0</build-helper-maven-plugin.version>
+		<code-coverage.include.package>com.demo.*</code-coverage.include.package>
+		<properties-maven-plugin.version>1.0.0</properties-maven-plugin.version>
+		<jacoco.version>0.7.9</jacoco.version>
+		<jmeter-maven-plugin.version>2.0.3</jmeter-maven-plugin.version>
+		<maven-failsafe-plugin.version>2.19</maven-failsafe-plugin.version>
+		<maven-surefire-plugin.version>2.18.1</maven-surefire-plugin.version>
+		<maven-antrun-plugin.version>1.8</maven-antrun-plugin.version>
+		<maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
+		<maven-resources-plugin.version>3.0.1</maven-resources-plugin.version>
+		<phantomjs.plugin.version>0.7</phantomjs.plugin.version>
+		<phantomjs.version>2.1.1</phantomjs.version>
+		<spring-boot-maven-plugin.version>2.1.1.RELEASE</spring-boot-maven-plugin.version>
+		<swagger2markup-maven-plugin.version>1.1.0</swagger2markup-maven-plugin.version>
+		<serenity.maven.version>1.1.42</serenity.maven.version>
+		<nexus.repo.url>http://ci-server.com:8082</nexus.repo.url>
+		<cucumber.version>1.2.5</cucumber.version>
+		<ms-tests.version>0.0.1</ms-tests.version>
+		
+    </properties>
+    
+    <dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.demo</groupId>
+				<artifactId>ms-tests</artifactId>
+				<version>${ms-tests.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.dell.tsp.admin.tsp-admin-service</groupId>
+            <artifactId>admin-service</artifactId>
+            <version>${project.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        
+        <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+			<version>2.1.1.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<version>2.1.1.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<version>2.1.1.RELEASE</version>
+			<scope>test</scope>
+		</dependency>
+	
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+			<version>2.1.1.RELEASE</version>
+		</dependency>
+        
+        <dependency>
+			<groupId>com.demo</groupId>
+			<artifactId>ms-tests</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.2.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>net.logstash.logback</groupId>
+			<artifactId>logstash-logback-encoder</artifactId>
+			<version>5.2</version>
+		</dependency>
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-core</artifactId>
+			<version>${cucumber.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>${cucumber.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<version>3.11.1</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			 <version>1.8.13</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.detro</groupId>
+			<artifactId>phantomjsdriver</artifactId>
+			 <version>1.2.0</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.klieber</groupId>
+			<artifactId>phantomjs-maven-plugin</artifactId>
+			<version>0.7</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<!-- <dependency>
+			<groupId>net.serenity-bdd</groupId>
+			<artifactId>serenity-cucumber</artifactId>
+			<version>1.5.13</version>
+		</dependency> -->
+		
+
+	</dependencies>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>${maven-resources-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${maven-compiler-plugin.version}</version>
+					<configuration>
+						<source>${java.version}</source>
+						<target>${java.version}</target>
+						<proc>none</proc>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>${maven-surefire-plugin.version}</version>
+					<configuration>
+						<skip>true</skip>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>build-helper-maven-plugin</artifactId>
+					<version>${build-helper-maven-plugin.version}</version>
+					<executions>
+						<execution>
+							<id>reserve-port</id>
+							<goals>
+								<goal>reserve-network-port</goal>
+							</goals>
+							<phase>process-resources</phase>
+							<configuration>
+								<portNames>
+									<portName>tomcat.http.port</portName>
+									<portName>tcp.dump.port</portName>
+									<portName>phantomjs.driver.port</portName>
+									<portName>jmx.port</portName>
+								</portNames>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>com.github.klieber</groupId>
+					<artifactId>phantomjs-maven-plugin</artifactId>
+					<version>${phantomjs.plugin.version}</version>
+					<executions>
+						<execution>
+							<goals>
+								<goal>install</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<version>${phantomjs.version}</version>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.jacoco</groupId>
+					<artifactId>jacoco-maven-plugin</artifactId>
+					<version>${jacoco.version}</version>
+					<executions>
+						<execution>
+							<id>default-prepare-agent-integration</id>
+							<goals>
+								<goal>prepare-agent-integration</goal>
+							</goals>
+							<configuration>
+								<propertyName>failsafeArgLine</propertyName>
+								<address>127.0.0.1</address>
+								<port>${tcp.dump.port}</port>
+								<output>tcpserver</output>
+								<includes>
+									<include>${code-coverage.include.package}</include>
+								</includes>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>aspectj-maven-plugin</artifactId>
+					<version>${aspectj-maven-plugin.version}</version>
+					<executions>
+						<execution>
+							<id>weave-classes</id>
+							<goals>
+								<goal>compile</goal>
+								<goal>test-compile</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<source>${java.version}</source>
+						<target>${java.version}</target>
+						<verbose>false</verbose>
+						<sources />
+						<outxml>false</outxml>
+						<showWeaveInfo>true</showWeaveInfo>
+						<complianceLevel>${java.version}</complianceLevel>
+						<warn>none</warn>
+						<encoding>UTF-8</encoding>
+						<aspectLibraries>
+						</aspectLibraries>
+						<weaveDependencies>
+							<weaveDependency>
+								<groupId>info.cukes</groupId>
+								<artifactId>gherkin</artifactId>
+							</weaveDependency>
+							<weaveDependency>
+								<groupId>com.demo</groupId>
+								<artifactId>ms-tests</artifactId>
+							</weaveDependency>
+							<weavedependency>
+								<groupId>info.cukes</groupId>
+								<artifactId>cucumber-core</artifactId>
+							</weavedependency>
+						</weaveDependencies>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-antrun-plugin</artifactId>
+					<version>${maven-antrun-plugin.version}</version>
+					<executions>
+						<execution>
+							<id>create-temp-jacoco-file</id>
+							<phase>test-compile</phase>
+							<goals>
+								<goal>run</goal>
+							</goals>
+							<configuration>
+								<target>
+									<echo
+										message="Creating temp jacoco exec file: ${project.build.directory}${file.separator}jacoco-it.exec" />
+									<touch
+										file="${project.build.directory}${file.separator}jacoco-it.exec" />
+								</target>
+							</configuration>
+						</execution>
+						<execution>
+							<id>create-directory</id>
+							<phase>pre-integration-test</phase>
+							<goals>
+								<goal>run</goal>
+							</goals>
+						</execution>
+						<execution>
+							<id>create-dump</id>
+							<phase>post-integration-test</phase>
+							<goals>
+								<goal>run</goal>
+							</goals>
+							<configuration>
+								<target xmlns:jacoco="antlib:org.jacoco.ant" name="jacoco-report">
+									<echo message="Starting dump of execution data" />
+									<taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
+										<classpath path="${project.build.directory}" />
+									</taskdef>
+									<!-- <jacoco:dump address="127.0.0.1" port="${tcp.dump.port}"
+										destfile="${project.build.directory}${file.separator}jacoco-it.exec" /> -->
+								</target>
+							</configuration>
+						</execution>
+						<execution>
+							<id>coverage-report</id>
+							<phase>verify</phase>
+							<goals>
+								<goal>run</goal>
+							</goals>
+							<configuration>
+								<target xmlns:jacoco="antlib:org.jacoco.ant" name="jacoco-report">
+									<echo message="Coverage report" />
+									<taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
+										<classpath path="${project.build.directory}" />
+									</taskdef>
+									<mkdir dir="${project.build.directory}/jacoco-report" />
+									<jacoco:report>
+										<executiondata>
+											<file
+												file="${project.build.directory}${file.separator}jacoco-it.exec" />
+											<file file="${api.basedir}/target/jacoco.exec" />
+										</executiondata>
+										<structure name="${api-name}">
+											<classfiles>
+												<fileset dir="${api.basedir}/target/classes" />
+											</classfiles>
+											<sourcefiles encoding="UTF-8">
+												<fileset dir="${api.basedir}/src/main/java" />
+											</sourcefiles>
+										</structure>
+										<html destdir="${project.build.directory}/jacoco-report" />
+									</jacoco:report>
+								</target>
+							</configuration>
+						</execution>
+					</executions>
+					<dependencies>
+						<dependency>
+							<groupId>org.jacoco</groupId>
+							<artifactId>org.jacoco.ant</artifactId>
+							<version>${jacoco.version}</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+					<version>${spring-boot-maven-plugin.version}</version>
+					<configuration>
+						<mainClass>${spring-boot-maven-plugin.mainClass}</mainClass>
+						<addResources>true</addResources>
+						<classifier>exec</classifier>
+						<folders>
+							<folder>${api.basedir}/src/main/resources/config</folder>
+						</folders>
+						<fork>false</fork>
+						<jmxPort>${jmx.port}</jmxPort>
+						<wait>1000</wait>
+						<maxAttempts>120</maxAttempts>
+						<excludes>
+							<exclude>
+								<groupId>com.demo</groupId>
+								<artifactId>ms-tests</artifactId>
+							</exclude>
+						</excludes>
+						<arguments>
+							<argument>--spring.config.location=classpath:deployment.it.yml</argument>
+							<argument>--server.port=${tomcat.http.port}</argument>
+						</arguments>
+					</configuration>
+					<executions>
+						<execution>
+							<id>pre-integration-test</id>
+							<goals>
+								<goal>start</goal>
+							</goals>
+							<configuration>
+								<jvmArguments>-Xms512m -Xmx1536m ${failsafeArgLine} -Djava.io.tmpdir=${java.io.tmpdir}</jvmArguments>
+							</configuration>
+						</execution>
+						<execution>
+							<id>post-integration-test</id>
+							<goals>
+								<goal>stop</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-failsafe-plugin</artifactId>
+					<version>${maven-failsafe-plugin.version}</version>
+					<executions>
+						<execution>
+							<goals>
+								<goal>integration-test</goal>
+								<goal>verify</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<testFailureIgnore>false</testFailureIgnore>
+						<skipTests>false</skipTests>
+						<forkCount>1C</forkCount>
+						<reuseForks>false</reuseForks>
+						<parallel>classes</parallel>
+						<threadCount>10</threadCount>
+						<shutdown>exit</shutdown>
+						<systemPropertyVariables>
+							<testEnvironment>${testEnvironment}</testEnvironment>
+							<api.url>${api.url}</api.url>
+							<webdriver.base.url>${domain.url}</webdriver.base.url>
+							<phantomjs.binary.path>${phantomjs.binary}</phantomjs.binary.path>
+							<phantomjs.webdriver.port>${phantomjs.driver.port}</phantomjs.webdriver.port>
+							<enableSerenity>true</enableSerenity>
+							<logback.configurationFile>${project.basedir}/src/test/resources/logback-tests.xml</logback.configurationFile>
+							<cucumber.api.java.ObjectFactory>com.demo.tests.helpers.ThreadSafeSpringFactory</cucumber.api.java.ObjectFactory>
+						</systemPropertyVariables>
+						<includes>
+							<include>**/*IT.java</include>
+						</includes>
+						<properties>
+							<property>
+								<name>listener</name>
+								<value>com.demo.tests.helpers.ExecutionListener</value>
+							</property>
+						</properties>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>net.serenity-bdd.maven.plugins</groupId>
+					<artifactId>serenity-maven-plugin</artifactId>
+					<version>${serenity.maven.version}</version>
+					<executions>
+						<execution>
+							<id>serenity-reports</id>
+							<phase>post-integration-test</phase>
+							<goals>
+								<goal>aggregate</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<!-- <plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>properties-maven-plugin</artifactId>
+					<version>${properties-maven-plugin.version}</version>
+					<executions>
+						<execution>
+							<goals>
+								<goal>set-system-properties</goal>
+							</goals>
+							<configuration>
+								<properties>
+									<property>
+										<name>io.swagger.parser.util.RemoteUrl.trustAll</name>
+										<value>true</value>
+									</property>
+								</properties>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin> -->
+
+			</plugins>
+		</pluginManagement>
+
+		<plugins>
+<!-- 			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>properties-maven-plugin</artifactId>
+			</plugin> -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>aspectj-maven-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.5.3</version>
+				<configuration>
+					<tagNameFormat>v@{project.version}</tagNameFormat>
+					<tagBase>${nexus.repo.url}/repositories/releases</tagBase>
+					<autoVersionSubmodules>true</autoVersionSubmodules>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>integration-tests</id>
+
+			<activation>
+				<file>
+					<exists>${basedir}/src/test/resources/cucumber/featurefiles</exists>
+				</file>
+			</activation>
+
+			<properties>
+				<testEnvironment>local</testEnvironment>
+				<api.basedir>${project.basedir}/../admin-service</api.basedir>
+			</properties>
+
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+					</plugin>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>build-helper-maven-plugin</artifactId>
+					</plugin>
+
+					<plugin>
+						<groupId>org.jacoco</groupId>
+						<artifactId>jacoco-maven-plugin</artifactId>
+					</plugin>
+
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-antrun-plugin</artifactId>
+					</plugin>
+
+					<plugin>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-maven-plugin</artifactId>
+					</plugin>
+
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-failsafe-plugin</artifactId>
+					</plugin>
+					<plugin>
+						<groupId>net.serenity-bdd.maven.plugins</groupId>
+						<artifactId>serenity-maven-plugin</artifactId>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<profile>
+			<id>serenity</id>
+			<activation>
+				<file>
+					<exists>${basedir}/src/test/resources/serenity.properties</exists>
+				</file>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.github.klieber</groupId>
+						<artifactId>phantomjs-maven-plugin</artifactId>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<profile>
+			<id>jmeter</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.lazerycode.jmeter</groupId>
+						<artifactId>jmeter-maven-plugin</artifactId>
+						<version>${jmeter-maven-plugin.version}</version>
+						<executions>
+							<execution>
+								<id>jmeter-tests</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>jmeter</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+	</profiles>
+</project>

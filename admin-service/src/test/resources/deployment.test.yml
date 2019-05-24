@@ -1,0 +1,32 @@
+active:
+    environment: unittest
+
+logging:
+    level:
+        request.trace: INFO
+    path: target/logs
+    
+spring:
+    profiles:
+        active: test, local
+        
+request:
+  logging:
+    secure:
+      enabled: false
+      
+spring:
+    main:
+        allow-bean-definition-overriding: true
+
+    datasource:
+      driverClassName: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/tsp_admin
+      username: root
+      password: Gaurav@587
+    jpa:
+      hibernate.ddl-auto: update
+      generate-ddl: true
+      show-sql: true
+useSSL: false
+security.enable-csrf: false

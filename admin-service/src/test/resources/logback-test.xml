@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+			<layout class="ch.qos.logback.classic.PatternLayout">
+				<Pattern>%date  %replace([%-15.15thread]){'\s', ''} admin-service %-5level %logger{36}%replace( %X{log-keyword} ){' ',' '}- %msg%nopex%n
+				</Pattern>
+			</layout>
+		</encoder>
+	</appender>
+
+
+	<root level="INFO">
+		<appender-ref ref="CONSOLE"/>
+	</root>
+
+
+	<logger name="org.springframework" level="INFO"/>
+	<logger name="org.springframework.security" level="INFO"/>
+	<logger name="com.demo" level="DEBUG"/>
+
+	<logger name="client.httpwire" level="DEBUG"/>
+	<logger name="springfox" level="WARN"/>
+
+</configuration>
+

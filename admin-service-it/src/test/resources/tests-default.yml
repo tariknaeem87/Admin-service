@@ -1,0 +1,29 @@
+jasypt:
+    alias: key
+    keystore: classpath:certs/selfsigned.jks
+    keystore-passwd: password
+    version: 1.0
+https:
+    validation:
+        relaxed: true
+jwt:
+    certs:
+        alias: key
+        keystore: certs\selfsigned.jks
+        keystore.password: password
+
+request:
+    tracking:
+      traceId:
+          name: spanTraceId
+          header:
+              name: X-B3-TraceId
+      spanId:
+          name: spanId
+          header:
+              name: X-B3-SpanId
+
+session:
+    config:
+        sessionid:
+            name: JSESSIONID

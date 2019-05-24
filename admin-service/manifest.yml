@@ -1,0 +1,12 @@
+---
+applications:
+- name: TSP-Admin-Service
+  path: target/admin-service-1.0.0-SNAPSHOT-exec.jar 
+  buildpack: https://github.com/cloudfoundry/java-buildpack.git
+  memory: 1G
+  services:
+    - tsp-admin
+    - service-registry
+    - config-Server
+  env:
+    SPRING_PROFILES_ACTIVE: development

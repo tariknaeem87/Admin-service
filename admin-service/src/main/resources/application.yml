@@ -1,0 +1,62 @@
+spring.thymeleaf.cache: false
+
+build:
+    info:
+        file: classpath:build-info.yml
+server:
+  servlet:
+    contextPath: /api
+  port: 8888
+
+swagger:
+  api:
+    title: sample-api
+    contact.info: Team
+    licence.url: #
+    description:
+    groupName: sample-api
+    version: 1.0
+    path:
+      regex: /v.*/.*
+  terms.of.service.url: #
+  enabled: true
+
+request:
+  logging:
+    enabled: true
+    verbose: false
+    
+
+spring:
+    main:
+        allow-bean-definition-overriding: true
+
+    datasource:
+      driverClassName: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/tsp_admin
+      username: root
+      password: admin
+    jpa:
+      hibernate.ddl-auto: update 
+      generate-ddl: true
+      show-sql: true
+    rabbitmq:
+      uri: amqp://guest:guest@10.118.169.49:5672
+      exchange: testExchange
+      routingkey: messages.key
+      
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://10.118.169.49:8761/eureka
+    
+useSSL: false
+security.enable-csrf: false
+
+subscriberBaseUrl: https://tsp-subscriber-service.cfapps.io/api
+crossOrigin: http://localhost:4200
+TSPMailAddress: tsp@notification.com
+notifiationBaseUrl: https://tsp-notification-service.cfapps.io/api/
+

@@ -1,0 +1,11 @@
+build:
+    version: '@build.number@'
+git:
+    build:
+        time: '@git.build.time@'
+        version: '@git.build.version@'
+    commit:
+        time: '@git.commit.time@'
+        id: '@git.commit.id@'
+    branch: '@git.branch@'
+    closest.tag.name: '@git.closest.tag.name@'

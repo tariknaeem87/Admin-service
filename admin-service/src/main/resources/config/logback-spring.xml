@@ -1,0 +1,13 @@
+<configuration scan="true" scanPeriod="60">
+
+<!--     <property name="LOG_FILE" value="${D}{LOG_PATH:-logs}/admin-service}"/> -->
+    <include resource="com/demo/commons/logback.xml"/>
+
+    <!--Changing a log level-->
+
+    <!--To change a log level insert an entry into the file like the example below, containing the
+    name of the logger you wish to configure -->
+    <logger name="request.trace" level="OFF" />
+    <logger name="springfox" level="WARN"/>
+
+</configuration>

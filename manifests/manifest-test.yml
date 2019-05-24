@@ -1,0 +1,11 @@
+---
+applications:
+- name: tsp-admin-service
+  path: ../admin-service/target/admin-service-1.0.0-SNAPSHOT-exec.jar
+  host: tsp-admin-service-test
+  timeout: 180
+  memory: 1024M
+  disk_quota: 1024M
+  instances: 1
+env:
+  JAVA_OPTS: '-Dspring.profile.active=local'
