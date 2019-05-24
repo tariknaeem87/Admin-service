@@ -13,7 +13,7 @@ node {
         build_version = env.BUILD_NUMBER
       
         stage('Build & Test') {
-            sh " C:/softwares/apache-maven-3.6.1/bin/mvn clean verify -DBUILD_NUMBER=$build_version"
+            sh " C:\softwares\apache-maven-3.6.1\bin\mvn clean verify -DBUILD_NUMBER=$build_version"
             
             junit(testResults: "admin-service/target/surefire-reports/*.xml")
             
