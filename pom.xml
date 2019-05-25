@@ -50,7 +50,7 @@
 		      	</snapshots>
 			<id>nexus</id>
 			<name>maven-group</name>
-			<url>${nexus.repo.url}/repository/maven-group/</url>
+			<url>${nexus.repo.url}/repository/maven-snapshots/</url>
 		</repository>
 	</repositories>
 	
