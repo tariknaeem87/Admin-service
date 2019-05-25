@@ -38,6 +38,16 @@
 
 	<repositories>
 		<repository>
+			<releases>
+        			<enabled>false</enabled>
+        			<updatePolicy>always</updatePolicy>
+        			<checksumPolicy>warn</checksumPolicy>
+      			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+				<checksumPolicy>fail</checksumPolicy>
+		      	</snapshots>
 			<id>nexus</id>
 			<name>maven-group</name>
 			<url>${nexus.repo.url}/repository/maven-group/</url>
