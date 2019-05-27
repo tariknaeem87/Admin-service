@@ -39,6 +39,18 @@
 		<ms-tests.version>0.0.1</ms-tests.version>
 		
     </properties>
+    <distributionManagement>
+		<repository>
+			<id>nexus</id>
+			<name>maven-releases</name>
+			<url>${nexus.repo.url}/repository/maven-releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>nexus</id>
+			<name>maven-snapshots</name>
+			<url>${nexus.repo.url}/repository/maven-snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
     
     <dependencyManagement>
 		<dependencies>
