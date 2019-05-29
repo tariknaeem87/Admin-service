@@ -37,7 +37,7 @@ node {
               sh "docker ps"
            }
         stage('ssh') {
-          job "ssh-admin"     
+          build "ssh-admin"     
               
         }
       
