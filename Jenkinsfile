@@ -45,8 +45,8 @@ node {
 //     sh 'ssh root@10.118.169.49'
       withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: '1cbeac72-4505-4a87-9bbe-de92a95b9217', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
 //          sh 'docker ps'
-            sh 'sshpass -p $PASSWORD ssh root@10.118.169.49'
-            sh 'docker ps'
+            sh 'sshpass -p $PASSWORD ssh root@10.118.169.49 | docker ps'
+         
  
 }
         }
