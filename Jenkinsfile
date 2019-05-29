@@ -43,7 +43,8 @@ node {
 //          sh 'docker ps' }      
 //              node('<MY_UNIX_SLAVE>') {
             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: '1cbeac72-4505-4a87-9bbe-de92a95b9217', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
-              sh 'echo uname=$USERNAME pwd=$PASSWORD'}
+//              sh 'echo uname=$USERNAME pwd=$PASSWORD'}
+                sh 'docker ps' }
         }
       
             
