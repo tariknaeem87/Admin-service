@@ -37,12 +37,15 @@ node {
               sh "docker ps"
            }
         stage ('Deploy') { 
-          sshagent(credentials : ['1cbeac72-4505-4a87-9bbe-de92a95b9217'])
-          sh 'ssh -o StrictHostKeyChecking=no root@10.118.169.49 uptime' 
-          sh 'ssh -v root@10.118.169.49' 
-          sh 'docker ps' }      
-              
+//          sshagent(credentials : ['1cbeac72-4505-4a87-9bbe-de92a95b9217'])
+//          sh 'ssh -o StrictHostKeyChecking=no root@10.118.169.49 uptime' 
+//          sh 'ssh -v root@10.118.169.49' 
+//          sh 'docker ps' }      
+//              node('<MY_UNIX_SLAVE>') {
+            withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: '1cbeac72-4505-4a87-9bbe-de92a95b9217', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+              sh 'echo uname=$USERNAME pwd=$PASSWORD'}
         }
       
             
 
+}
