@@ -36,14 +36,15 @@ node {
               //sh 'docker rmi $(docker images --filter "dangling=true" -q --no-trunc) '
               sh "docker ps"
            }
-        stage ('Deploy') { 
+  stage ('Deploy') { 
 //          sshagent(credentials : ['1cbeac72-4505-4a87-9bbe-de92a95b9217'])
 //          sh 'ssh -o StrictHostKeyChecking=no root@10.118.169.49 uptime' 
 //          sh 'ssh -v root@10.118.169.49' 
 //          sh 'docker ps' }      
-//              node('10.118.169.49') s
+//              node('10.118.169.49') 
+    steps{ sh 'ssh root@10.118.169.49'
         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: '1cbeac72-4505-4a87-9bbe-de92a95b9217', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
-        sh 'docker ps'
+          sh 'docker ps'}
  
 }
         }
