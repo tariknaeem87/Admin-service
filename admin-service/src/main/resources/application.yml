@@ -34,7 +34,7 @@ spring:
     datasource:
       driverClassName: com.mysql.jdbc.Driver
       url: jdbc:mysql://10.118.169.49:3307/tsp_admin
-      username: root
+      username: admin
       password: admin
     jpa:
       hibernate.ddl-auto: update 
