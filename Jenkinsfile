@@ -26,11 +26,11 @@ node {
         def sonarqubeScannerHome = tool name: 'sonarqubescanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
         stage('Code Analysis') {
             //sh "${sonarqubeScannerHome}/bin/sonar-scanner -e -Dsonar.host.url=http://sonar.ms-accelerator.com -Dsonar.projectName=admin-service -Dsonar.projectKey=com.dell.tsp.admin.tsp-admin-service:tsp-admin-service -Dsonar.sources=. -Dsonar.java.binaries=."
-            bat "${mvnHome}/bin/mvn sonar:sonar"
+            sh "${mvnHome}/bin/mvn sonar:sonar"
         }
 
         stage('Deploy to Nexus') {
-            bat "${mvnHome}/bin/mvn deploy -DBUILD_NUMBER=$build_version -Dmaven.test.skip=true"
+            sh "${mvnHome}/bin/mvn deploy -DBUILD_NUMBER=$build_version -Dmaven.test.skip=true"
          }
             
         stage('Deploy to Test') {
