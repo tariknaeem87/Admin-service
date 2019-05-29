@@ -36,10 +36,9 @@ node {
               //sh 'docker rmi $(docker images --filter "dangling=true" -q --no-trunc) '
               sh "docker ps"
            }
-        stage('ssh') {
-          build "ssh-admin"     
+        stage ('Deploy') { steps{ sshagent(credentials : ['use-the-id-from-credential-generated-by-jenkins']) { sh 'ssh -o StrictHostKeyChecking=no root@10.118.169.49 uptime' sh 'ssh -v root@10.118.169.49' sh 'docker ps' } } }     
               
         }
       
             
-}
+
