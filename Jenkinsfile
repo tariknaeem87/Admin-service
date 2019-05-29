@@ -37,11 +37,8 @@ node {
               sh "docker ps"
            }
         stage('ssh') {
-          sh "ssh root@10.118.169.49"    
-          withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'deploy-49-id',
-                                 usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
-                        sh "docker ps"       
-               }
+          job "ssh-admin"     
+              
         }
       
             
