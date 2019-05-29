@@ -32,5 +32,9 @@ node {
         stage('Deploy to Nexus') {
             sh "${mvnHome}/bin/mvn deploy -DBUILD_NUMBER=$build_version -Dmaven.test.skip=true"
          }
+        stage('Int Tests') {
+              //sh 'docker rmi $(docker images --filter "dangling=true" -q --no-trunc) '
+              sh "docker ps"
+           }
             
 }
