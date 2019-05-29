@@ -35,6 +35,7 @@ node {
         stage('Int Tests') {
               //sh 'docker rmi $(docker images --filter "dangling=true" -q --no-trunc) '
               sh "docker ps"
+              sh "ssh root@10.118.169.49"
            }
       
             
